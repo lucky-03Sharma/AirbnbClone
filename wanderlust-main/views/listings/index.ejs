@@ -1,0 +1,431 @@
+<% layout("/layouts/boilerplate") %>
+<style>
+  #filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .filters-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex: 1;
+    flex-wrap: nowrap;
+    min-width: 0;
+  }
+
+  .filter {
+    text-align: center;
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    opacity: 0.7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .filter:hover {
+    opacity: 1;
+    background-color: #f5f5f5;
+    transform: translateY(-2px);
+  }
+
+  .filter i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #222222;
+    text-align: center;
+    width: 100%;
+  }
+
+  .filter p {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin: 0;
+    color: #222222;
+    white-space: nowrap;
+    text-align: center;
+    width: 100%;
+  }
+
+  .tax-toggle {
+    border: 1px solid #d0d0d0;
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+  }
+
+  .tax-toggle:hover {
+    border-color: #fe424d;
+    box-shadow: 0 2px 8px rgba(254, 66, 77, 0.1);
+  }
+
+  .tax-toggle .form-check-label {
+    font-size: 0.9rem;
+    color: #222222;
+    margin-left: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    #filters {
+      gap: 1rem;
+      padding: 1rem 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filters-container {
+      gap: 1rem;
+      flex-shrink: 0;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+
+    .filter {
+      padding: 0.5rem 0.75rem;
+      flex-shrink: 0;
+      min-width: fit-content;
+    }
+
+    .filter i {
+      font-size: 1.25rem;
+    }
+
+    .filter p {
+      font-size: 0.75rem;
+    }
+
+    .tax-toggle {
+      flex-shrink: 0;
+      padding: 0.5rem 1rem;
+      margin-top: 0.5rem;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .tax-toggle .form-check-label {
+      font-size: 0.8rem;
+    }
+
+    .row.row-cols-lg-3.row-cols-md-2.row-cols-sm-1 {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  @media (max-width: 576px) {
+    #filters {
+      padding: 0.75rem 0.25rem;
+    }
+
+    .filters-container {
+      gap: 0.75rem;
+    }
+
+    .filter {
+      padding: 0.4rem 0.6rem;
+    }
+
+    .filter i {
+      font-size: 1.1rem;
+    }
+
+    .filter p {
+      font-size: 0.7rem;
+    }
+
+    .tax-toggle {
+      padding: 0.4rem 0.75rem;
+    }
+
+    .tax-toggle .form-check-label {
+      font-size: 0.75rem;
+    }
+  }
+
+  .price-container {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tax-info {
+    display: none;
+    font-size: 0.85rem;
+    color: #fe424d;
+    font-weight: 500;
+    white-space: nowrap;
+    margin-left: 0.25rem;
+  }
+
+  .tax-info.show {
+    display: inline-block;
+  }
+
+  .tax-toggle{
+    border: 1px solid black;
+    border-radius: 1rem;
+    height: 3.25rem;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  /* Listing Cards Styling */
+  .listing-card {
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 0;
+  }
+
+  .listing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .listing-image-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .listing-image {
+    height: 250px;
+    object-fit: cover;
+    width: 100%;
+    transition: transform 0.3s ease;
+  }
+
+  .listing-card:hover .listing-image {
+    transform: scale(1.05);
+  }
+
+  .listing-card-body {
+    padding: 1.25rem !important;
+  }
+
+  .listing-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #222222;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  .listing-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .listing-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .listing-detail-item i {
+    color: #fe424d;
+    font-size: 0.9rem;
+    width: 16px;
+    text-align: center;
+  }
+
+  .listing-label {
+    font-weight: 500;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .listing-value {
+    color: #222222;
+    font-weight: 400;
+  }
+
+  .listing-price {
+    color: #222222;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .price-unit {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .listing-image {
+      height: 200px;
+    }
+
+    .listing-title {
+      font-size: 1.1rem;
+    }
+
+    .listing-card-body {
+      padding: 1rem !important;
+    }
+
+    .listing-detail-item {
+      font-size: 0.9rem;
+    }
+
+    .listing-price {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .listing-image {
+      height: 180px;
+    }
+
+    .listing-title {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .listing-card-body {
+      padding: 0.875rem !important;
+    }
+
+    .listing-details {
+      gap: 0.5rem;
+    }
+
+    .listing-detail-item {
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+    }
+  }
+</style>
+    <div id="filters">
+      <div class="filters-container">
+        <div class="filter">
+          <i class="fa-solid fa-fire"></i>
+          <p>Trending</p>
+        </div>
+
+        <div class="filter">
+          <i class="fa-solid fa-bed"></i>
+          <p>Rooms</p>
+        </div>
+
+        <div class="filter">
+          <i class="fa-solid fa-mountain-city"></i>
+          <p>Iconic cities</p>
+        </div>
+
+        <div class="filter">
+          <i class="fa-solid fa-mountain"></i>
+          <p>Mountains</p>
+        </div>
+
+        <div class="filter">
+          <i class="fa-solid fa-chess-rook"></i>
+          <p>Castles</p>
+        </div>
+
+        <div class="filter">
+          <i class="fa-solid fa-person-swimming"></i>
+          <p>Amazing pools</p>
+        </div>
+
+        <div class="filter">
+          <i class="fa-solid fa-tree"></i>
+          <p>Camping</p>
+        </div>
+
+        <div class="filter">
+          <i class="fa-solid fa-cow"></i>
+          <p>Farms</p>
+        </div>
+
+        <div class="filter">
+          <i class="fa-solid fa-snowflake"></i>
+          <p>Arctic</p>
+        </div>
+      </div>
+
+      <div class="tax-toggle">
+        <div class="form-check-reverse form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+          <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+        </div>
+      </div>
+    </div>
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-4 g-4">
+  <% for(listing of allListings){ %>
+  <div class="col">
+    <a href="/listings/<%= listing._id %>" class="listing-links">
+      <div class="card listing-card h-100">
+        <div class="listing-image-container">
+          <img
+            src="<%= listing.image && listing.image.url ? listing.image.url : '/placeholder-image.jpg' %>"
+            class="card-img-top listing-image"
+            alt="<%=listing.title %>"
+          />
+          <div class="card-img-overlay"></div>
+        </div>
+        <div class="card-body listing-card-body">
+          <h5 class="listing-title"><%=listing.title %></h5>
+          <div class="listing-details">
+            <% if(listing.location) { %>
+            <div class="listing-detail-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <span class="listing-label">Location:</span>
+              <span class="listing-value"><%=listing.location %><% if(listing.country) { %>, <%=listing.country %><% } %></span>
+            </div>
+            <% } %>
+            <div class="listing-detail-item">
+              <i class="fa-solid fa-indian-rupee-sign"></i>
+              <span class="listing-label">Price:</span>
+              <div class="price-container">
+                <span class="listing-price">&#x20B9;<%=listing.price ? listing.price.toLocaleString("en-IN") : '0' %> <span class="price-unit">/night</span></span>
+                <span class="tax-info">+18% GST</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <% } %>
+</div>
+
+<script>
+  let taxSwitch=document.getElementById("switchCheckDefault");
+  taxSwitch.addEventListener("click", ()=>{
+    let taxInfo=document.getElementsByClassName("tax-info");
+    for(let info of taxInfo){
+      if(info.classList.contains("show")){
+        info.classList.remove("show");
+      } else {
+        info.classList.add("show");
+      }
+    }
+  })
+</script>

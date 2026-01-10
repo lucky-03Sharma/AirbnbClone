@@ -1,0 +1,191 @@
+<% layout("/layouts/boilerplate")%>
+<style>
+  @media (max-width: 768px) {
+    .edit-listing-container {
+      padding: 1rem;
+    }
+    
+    .edit-listing-container h1 {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .edit-listing-form {
+      width: 100%;
+    }
+    
+    .row .col-md-4,
+    .row .col-md-8 {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    
+    .edit-listing-container img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .edit-listing-container {
+      padding: 0.5rem;
+    }
+    
+    .edit-listing-container h1 {
+      font-size: 1.25rem;
+    }
+  }
+</style>
+<body>
+   <div class="row mt-3 edit-listing-container">
+      <div class="col-12 col-md-8 offset-md-2 edit-listing-form">
+    <h1> Edit your listings </h1>
+    <form method="POST" action="/listings/<%=listing._id%>?_method=PUT" 
+      novalidate
+       class="needs-validation"
+       enctype="multipart/form-data">
+       <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+    <input 
+    name="listing[title]" 
+    value="<%= listing.title%>"
+     type="text" 
+     class="form-control"
+     required
+     />
+     <div class="valid-feedback">
+Title looks good 
+     </div>
+       </div>
+<div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+       <textarea
+        name="listing[description]"
+   class="form-control"
+   required><%= listing.description %></textarea>
+<div class="invalid-feedback">
+          Add relevant description
+     </div>
+    </div>
+<div class="mb-3">
+  Original Listing Image <br>
+  <img src="<%= originalImageUrl %>"/>
+</div>
+
+  <div class="mb-3">
+    <label for="image" class="form-label">Upload New Image</label>
+       <input
+        name="listing[image]"
+          type="file"
+           class="form-control"
+           />
+             <div class="invalid-feedback">
+          Please enter an image /div>
+    </div>
+
+   </div>
+   <div class="row">
+   <div class="mb-3 col-md-4">
+       <label for="price" class="form-label">Price</label>
+       <input 
+       name="listing[price]" 
+       value="<%=listing.price%>"
+        type="number"
+        class="form-control"
+        required
+        />
+        <div class="invalid-feedback">
+          Please enter a valid price</div>
+    </div>
+</div>
+<div class="mb-3 col-md-8">
+    <label for="country" class="form-label">Country</label>
+       <select 
+       name="listing[country]"
+        id="country"
+         class="form-control"
+         required
+         >
+         <option value="India" <%= listing.country === 'India' ? 'selected' : '' %>>India</option>
+         <option value="United States" <%= listing.country === 'United States' ? 'selected' : '' %>>United States</option>
+         <option value="United Kingdom" <%= listing.country === 'United Kingdom' ? 'selected' : '' %>>United Kingdom</option>
+         <option value="Canada" <%= listing.country === 'Canada' ? 'selected' : '' %>>Canada</option>
+         <option value="Australia" <%= listing.country === 'Australia' ? 'selected' : '' %>>Australia</option>
+         <option value="Germany" <%= listing.country === 'Germany' ? 'selected' : '' %>>Germany</option>
+         <option value="France" <%= listing.country === 'France' ? 'selected' : '' %>>France</option>
+         <option value="Italy" <%= listing.country === 'Italy' ? 'selected' : '' %>>Italy</option>
+         <option value="Spain" <%= listing.country === 'Spain' ? 'selected' : '' %>>Spain</option>
+         <option value="Japan" <%= listing.country === 'Japan' ? 'selected' : '' %>>Japan</option>
+         <option value="China" <%= listing.country === 'China' ? 'selected' : '' %>>China</option>
+         <option value="South Korea" <%= listing.country === 'South Korea' ? 'selected' : '' %>>South Korea</option>
+         <option value="Singapore" <%= listing.country === 'Singapore' ? 'selected' : '' %>>Singapore</option>
+         <option value="Thailand" <%= listing.country === 'Thailand' ? 'selected' : '' %>>Thailand</option>
+         <option value="Malaysia" <%= listing.country === 'Malaysia' ? 'selected' : '' %>>Malaysia</option>
+         <option value="Indonesia" <%= listing.country === 'Indonesia' ? 'selected' : '' %>>Indonesia</option>
+         <option value="Philippines" <%= listing.country === 'Philippines' ? 'selected' : '' %>>Philippines</option>
+         <option value="Vietnam" <%= listing.country === 'Vietnam' ? 'selected' : '' %>>Vietnam</option>
+         <option value="Nepal" <%= listing.country === 'Nepal' ? 'selected' : '' %>>Nepal</option>
+         <option value="Sri Lanka" <%= listing.country === 'Sri Lanka' ? 'selected' : '' %>>Sri Lanka</option>
+         <option value="Bangladesh" <%= listing.country === 'Bangladesh' ? 'selected' : '' %>>Bangladesh</option>
+         <option value="Pakistan" <%= listing.country === 'Pakistan' ? 'selected' : '' %>>Pakistan</option>
+         <option value="United Arab Emirates" <%= listing.country === 'United Arab Emirates' ? 'selected' : '' %>>United Arab Emirates</option>
+         <option value="Saudi Arabia" <%= listing.country === 'Saudi Arabia' ? 'selected' : '' %>>Saudi Arabia</option>
+         <option value="Qatar" <%= listing.country === 'Qatar' ? 'selected' : '' %>>Qatar</option>
+         <option value="Kuwait" <%= listing.country === 'Kuwait' ? 'selected' : '' %>>Kuwait</option>
+         <option value="Oman" <%= listing.country === 'Oman' ? 'selected' : '' %>>Oman</option>
+         <option value="Bahrain" <%= listing.country === 'Bahrain' ? 'selected' : '' %>>Bahrain</option>
+         <option value="Turkey" <%= listing.country === 'Turkey' ? 'selected' : '' %>>Turkey</option>
+         <option value="Greece" <%= listing.country === 'Greece' ? 'selected' : '' %>>Greece</option>
+         <option value="Portugal" <%= listing.country === 'Portugal' ? 'selected' : '' %>>Portugal</option>
+         <option value="Netherlands" <%= listing.country === 'Netherlands' ? 'selected' : '' %>>Netherlands</option>
+         <option value="Belgium" <%= listing.country === 'Belgium' ? 'selected' : '' %>>Belgium</option>
+         <option value="Switzerland" <%= listing.country === 'Switzerland' ? 'selected' : '' %>>Switzerland</option>
+         <option value="Austria" <%= listing.country === 'Austria' ? 'selected' : '' %>>Austria</option>
+         <option value="Sweden" <%= listing.country === 'Sweden' ? 'selected' : '' %>>Sweden</option>
+         <option value="Norway" <%= listing.country === 'Norway' ? 'selected' : '' %>>Norway</option>
+         <option value="Denmark" <%= listing.country === 'Denmark' ? 'selected' : '' %>>Denmark</option>
+         <option value="Finland" <%= listing.country === 'Finland' ? 'selected' : '' %>>Finland</option>
+         <option value="Poland" <%= listing.country === 'Poland' ? 'selected' : '' %>>Poland</option>
+         <option value="Czech Republic" <%= listing.country === 'Czech Republic' ? 'selected' : '' %>>Czech Republic</option>
+         <option value="Hungary" <%= listing.country === 'Hungary' ? 'selected' : '' %>>Hungary</option>
+         <option value="Russia" <%= listing.country === 'Russia' ? 'selected' : '' %>>Russia</option>
+         <option value="Brazil" <%= listing.country === 'Brazil' ? 'selected' : '' %>>Brazil</option>
+         <option value="Argentina" <%= listing.country === 'Argentina' ? 'selected' : '' %>>Argentina</option>
+         <option value="Mexico" <%= listing.country === 'Mexico' ? 'selected' : '' %>>Mexico</option>
+         <option value="Chile" <%= listing.country === 'Chile' ? 'selected' : '' %>>Chile</option>
+         <option value="Peru" <%= listing.country === 'Peru' ? 'selected' : '' %>>Peru</option>
+         <option value="Colombia" <%= listing.country === 'Colombia' ? 'selected' : '' %>>Colombia</option>
+         <option value="South Africa" <%= listing.country === 'South Africa' ? 'selected' : '' %>>South Africa</option>
+         <option value="Egypt" <%= listing.country === 'Egypt' ? 'selected' : '' %>>Egypt</option>
+         <option value="Morocco" <%= listing.country === 'Morocco' ? 'selected' : '' %>>Morocco</option>
+         <option value="Kenya" <%= listing.country === 'Kenya' ? 'selected' : '' %>>Kenya</option>
+         <option value="New Zealand" <%= listing.country === 'New Zealand' ? 'selected' : '' %>>New Zealand</option>
+         <option value="Fiji" <%= listing.country === 'Fiji' ? 'selected' : '' %>>Fiji</option>
+         <option value="Maldives" <%= listing.country === 'Maldives' ? 'selected' : '' %>>Maldives</option>
+         <option value="Mauritius" <%= listing.country === 'Mauritius' ? 'selected' : '' %>>Mauritius</option>
+         <option value="Seychelles" <%= listing.country === 'Seychelles' ? 'selected' : '' %>>Seychelles</option>
+         </select>
+         <div class="invalid-feedback">
+          Please select a country</div>
+    </div>
+  </div>
+  </div>
+<div class="mb-3">
+    <label for="location" class="form-label">Location</label>
+       <input 
+       name="listing[location]"
+        value="<%=listing.location%>"
+         type="text"
+          class="form-control"
+          required
+          />
+          <div class="invalid-feedback">
+         Location should be valid</div>
+       </div>
+    </div>
+    <button class="btn btn-dark edit-btn mt-3"> edit your listings</button>
+    </form>
+    </div>
+    </div>
+

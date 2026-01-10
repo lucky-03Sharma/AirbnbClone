@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Outer circle -->
+  <circle cx="256" cy="256" r="240" fill="none" stroke="#fe424d" stroke-width="25"/>
+  <!-- Diamond-shaped compass needle pointing top-right -->
+  <path d="M 256 100 L 350 256 L 256 412 L 162 256 Z" fill="#fe424d"/>
+  <!-- Center dot -->
+  <circle cx="256" cy="256" r="25" fill="#fe424d"/>
+</svg>

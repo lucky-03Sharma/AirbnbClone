@@ -1,0 +1,329 @@
+body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+}
+
+
+.navbar {
+    height: 5rem;
+    background-color: white;
+}
+
+.fa-compass {
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.nav-link {
+    color: #222222 !important;
+}
+
+.navbar-nav:first-of-type {
+    margin-left: -0.99rem !important;
+}
+
+.f-info-links a {
+    text-decoration: none;
+    color: #222222;
+
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+
+.f-info-links,
+.f-info-socials,
+.f-info-brand {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.f-info-socials {
+    font-size: 1.2rems;
+    margin-right: 2rems;
+}
+
+.f-info-social i {
+    margin-right: 1 rem;
+}
+
+.f-info {
+    text-align: center;
+    height: 8rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+
+.listing-card {
+    border: none !important;
+    margin-bottom: 0 !important;
+}
+
+.card-img-top {
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+.card-body {
+    padding: 0 !important;
+}
+
+/* Override for listing card body specifically */
+.listing-card-body {
+    padding: 1.25rem !important;
+}
+
+.card-text p {
+    font-weight: 300 !important;
+}
+
+.listing_link {
+    text-decoration: none;
+}
+
+.listing-links {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.listing-links:hover {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.card-img-overlay {
+    opacity: 0;
+}
+
+.card-img-overlay:hover {
+    opacity: 0.4;
+    background-color: white;
+}
+
+.add-btn {
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+.edit-btn {
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+.show-img {
+    height: 30vh;
+}
+
+.btns {
+    display: flex;
+}
+
+.show-card {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* MAP */
+#map {
+  height: 400px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  /* Navbar */
+  .navbar {
+    height: auto;
+    min-height: 4rem;
+    padding: 0.5rem 0;
+  }
+
+  .navbar-brand {
+    margin-right: 0.5rem !important;
+  }
+
+  .fa-compass {
+    font-size: 1.5rem;
+  }
+
+  .navbar-nav {
+    margin-top: 0.5rem;
+  }
+
+  .nav-link {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem;
+  }
+
+  .search-inp {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .search-btn {
+    width: 100%;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem;
+  }
+
+  .navbar-nav.ms-auto {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .navbar-nav.ms-auto form {
+    width: 100%;
+  }
+
+  /* Container */
+  .container {
+    padding: 0.5rem;
+  }
+
+  /* Map */
+  #map {
+    height: 300px;
+  }
+
+  /* Cards */
+  .listing-card-body {
+    padding: 1rem !important;
+  }
+
+  /* Buttons */
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  /* Footer */
+  .f-info {
+    height: auto;
+    padding: 1.5rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  /* Show page */
+  .show-img {
+    height: 25vh;
+  }
+
+  .btns {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .btns .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Navbar */
+  .navbar {
+    padding: 0.25rem 0;
+  }
+
+  .fa-compass {
+    font-size: 1.25rem;
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem !important;
+  }
+
+  /* Container */
+  .container {
+    padding: 0.25rem;
+  }
+
+  /* Headings */
+  h1 {
+    font-size: 1.5rem !important;
+  }
+
+  h2 {
+    font-size: 1.25rem !important;
+  }
+
+  h3 {
+    font-size: 1.1rem !important;
+  }
+
+  h4 {
+    font-size: 1rem !important;
+  }
+
+  /* Map */
+  #map {
+    height: 250px;
+  }
+
+  /* Show page */
+  .show-img {
+    height: 20vh;
+  }
+
+  /* Forms */
+  .form-control {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+  }
+
+  /* Remove offsets on mobile */
+  .offset-md-2,
+  .offset-md-3 {
+    margin-left: 0 !important;
+  }
+
+  .col-md-6,
+  .col-md-8 {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Cards */
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  .listing-card-body {
+    padding: 0.75rem !important;
+  }
+
+  /* Footer */
+  .f-info {
+    padding: 1rem 0.25rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Listing Cards Grid Spacing */
+.row.g-4 > * {
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-top: var(--bs-gutter-y);
+}

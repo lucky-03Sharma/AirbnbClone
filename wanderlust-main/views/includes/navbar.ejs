@@ -1,0 +1,153 @@
+<style>
+  .search-btn{
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+  }
+
+  .search-btn:hover{
+    background-color: #fe424d;
+    color: #fff;
+  }
+
+  .search-btn i{
+    display: inline;
+    margin-right: 0.5rem;
+  }
+
+  .search-inp{
+    border-radius: 25px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    font-size: 1rem;
+  }
+
+  .airbnb-home-link {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 22px;
+    padding: 0.5rem 1rem;
+    margin-right: 0.75rem;
+    color: #222222 !important;
+    font-weight: 500;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .airbnb-home-link:hover {
+    background-color: #f7f7f7;
+    border-color: #222222;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #222222 !important;
+    transform: translateY(-1px);
+  }
+
+  .airbnb-home-link i {
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .search-inp {
+      padding: 0.5rem 1rem !important;
+      font-size: 0.9rem;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    .search-btn {
+      width: 100%;
+      padding: 0.5rem 1rem !important;
+      font-size: 0.9rem;
+    }
+
+    .navbar-nav.ms-auto {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    .navbar-nav.ms-auto form {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .navbar-nav.ms-auto .nav-link {
+      text-align: center;
+      padding: 0.75rem 1rem !important;
+    }
+
+    .airbnb-home-link {
+      width: 100%;
+      justify-content: center;
+      margin-right: 0;
+      margin-bottom: 0.5rem;
+      padding: 0.6rem 1rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .search-inp {
+      font-size: 0.85rem;
+      padding: 0.4rem 0.75rem !important;
+    }
+
+    .search-btn {
+      font-size: 0.85rem;
+      padding: 0.4rem 0.75rem !important;
+    }
+
+    .airbnb-home-link {
+      font-size: 0.85rem;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .airbnb-home-link i {
+      font-size: 0.8rem;
+    }
+  }
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+        
+      </div>
+      <div class="navbar-nav ms-auto">
+        <form class="d-flex" role="search">
+      <input class="form-control me-2 search-inp" type="search" placeholder="Search destinations"/>
+      <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+    </form>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <a class="airbnb-home-link" href="/listings/new">
+          <i class="fa-solid fa-house"></i>
+          Airbnb your home
+        </a>
+        <% if(currUser) { %>
+        <a class="nav-link" href="/logout">Logout</a>
+        <% } else { %>
+        <a class="nav-link" href="/signup"><b>Signup</a></b>
+        <a class="nav-link" href="/login"><b>Login</a></b>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
