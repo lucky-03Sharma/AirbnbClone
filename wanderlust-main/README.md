@@ -1,2 +1,2 @@
 # wanderlust
-lucku
+This is a replica of AirBnB website .
